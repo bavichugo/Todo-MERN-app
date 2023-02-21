@@ -1,13 +1,14 @@
 # Todo-MERN-app
 ## This is a todo app that uses the following technologies:
 ### Frontend
-React
-Redux
-TypeScript
+- React
+- Redux
+- Tailwind CSS
 
 ### Backend
-Express
-REST APIs
+- Express
+- REST APIs
 
 ### Server
-MongoDB
+- MongoDB
+
