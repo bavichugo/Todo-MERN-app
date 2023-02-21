@@ -1,19 +1,22 @@
 // TODO: add functionality to login and logout properly
 
+import EmeraldButton from "../Buttons/EmeraldButton";
+
 const NavBar = () => {
+
+  const loginHandler = () => {
+    console.log("Login clicked!");
+  }
+
+  const logoutHandler = () => {
+
+  }
+
   return (
-    <div className="max-w-5xl w-full flex justify-between h-12 items-center text-xl">
+    <div className="max-w-5xl w-full flex justify-between h-12 items-center text-xl pt-2">
       <span>Todo</span>
-      {true && (
-        <button className="border-solid border-2 border-emerald-400 rounded-lg px-2 hover:bg-emerald-300/20">
-          Login
-        </button>
-      )}
-      {false && (
-        <span className="border-solid border-2 border-emerald-400 rounded-lg px-2 hover:bg-emerald-300/20">
-          Logout
-        </span>
-      )}
+      {true && <EmeraldButton onClick={loginHandler}>Login</EmeraldButton>}
+      {false && <EmeraldButton onClick={logoutHandler}>Logout</EmeraldButton>}
     </div>
   );
 };
