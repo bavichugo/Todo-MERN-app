@@ -12,14 +12,16 @@ const Signup = () => {
     event.preventDefault();
     const password = passwordRef.current!.value.trim();
     const confirmPassword = confirmPasswordRef.current!.value.trim();
-    if (!validPassword(password, confirmPassword)) {
-      return;
-    }
+    if (!validPassword(password, confirmPassword)) return;
     formRef.current?.reset();
-  }
+  };
 
   return (
-    <form className="flex flex-col gap-4 mt-4" ref={formRef} onSubmit={onSubmitHandler}>
+    <form
+      className="flex flex-col gap-4 mt-4"
+      ref={formRef}
+      onSubmit={onSubmitHandler}
+    >
       <label className="flex flex-col" htmlFor="email">
         Email
         <input
