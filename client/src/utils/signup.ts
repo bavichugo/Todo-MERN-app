@@ -1,11 +1,20 @@
-export const validPassword = (password: string, confirmPassword: string) => {
+export const validPassword = (password: string) => {
+  if (password.trim().length < 5) {
+    alert("Invalid password");
+    return false;
+  }
 
-  if (password.length === 0 || confirmPassword.length === 0) {
+  return true;
+}
+
+export const validPasswordAndConfirmPassword = (password: string, confirmPassword: string) => {
+
+  if (password.trim().length === 0 || confirmPassword.trim().length === 0) {
     alert("Password or confirm password cannot be emtpy");
     return false;
   }
 
-  if (password.length < 5 || confirmPassword.length < 5) {
+  if (password.trim().length < 5 || confirmPassword.trim().length < 5) {
     alert("Password or confirm password has to be greater than 5");
     return false;
   }
@@ -14,4 +23,6 @@ export const validPassword = (password: string, confirmPassword: string) => {
     alert("Passwords do not match");
     return false;
   }
+
+  return true;
 } 

@@ -1,33 +1,31 @@
 import EmeraldButton from "./Buttons/EmeraldButton";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../../store/auth-slice";
-import { uiActions } from "../../store/ui-slice";
-import { StoreState } from "../../store";
+import { AppDispatch, StoreState } from "../../store";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const isAuthenticated = useSelector(
     (state: StoreState) => state.auth.isAuthenticated
   );
 
   return (
     <div className="max-w-5xl w-full flex justify-between h-12 items-center text-xl py-2 border-b-white/20 border-b">
-      <span>Todo</span>
+      <Link to="/">
+        <span>Todo</span>
+      </Link>
       {!isAuthenticated && (
         <div className="flex gap-4">
-          <EmeraldButton onClick={() => dispatch(uiActions.login())}>
-            Login
-          </EmeraldButton>
-          <EmeraldButton onClick={() => dispatch(uiActions.signup())}>
-            Signup
-          </EmeraldButton>
+          <Link to="login">
+            <EmeraldButton>Login</EmeraldButton>
+          </Link>
+          <Link to="signup">
+            <EmeraldButton>Signup</EmeraldButton>
+          </Link>
         </div>
       )}
       {isAuthenticated && (
-        <EmeraldButton onClick={() => {
-          dispatch(authActions.logout());
-          dispatch(uiActions.logout());
-        }}>
+        <EmeraldButton onClick={() => console.log("Logout")}>
           Logout
         </EmeraldButton>
       )}
