@@ -1,4 +1,4 @@
-import EmeraldButton from "../UI/Buttons/EmeraldButton";
+import EmeraldButton from "../components/UI/Buttons/EmeraldButton";
 import { Link } from "react-router-dom";
 
 const Page404 = () => {

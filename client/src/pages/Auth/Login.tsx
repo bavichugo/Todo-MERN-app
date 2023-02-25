@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from "react";
-import { validPassword } from "../../../utils/signup";
-import EmeraldButton from "../../UI/Buttons/EmeraldButton";
+import { validPassword } from "../../utils/signup";
+import EmeraldButton from "../../components/UI/Buttons/EmeraldButton";
 
 const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null);

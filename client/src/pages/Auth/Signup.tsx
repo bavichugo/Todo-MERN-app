@@ -1,9 +1,9 @@
 import { FormEvent, useRef } from "react";
 import { useDispatch } from "react-redux";
-import EmeraldButton from "../../UI/Buttons/EmeraldButton";
-import { validPasswordAndConfirmPassword } from "../../../utils/signup";
-import { postSignup } from "../../../store/auth-slice";
-import { AppDispatch } from "../../../store";
+import EmeraldButton from "../../components/UI/Buttons/EmeraldButton";
+import { validPasswordAndConfirmPassword } from "../../utils/signup";
+import { putSignup } from "../../store/auth-slice";
+import { AppDispatch } from "../../store";
 
 const Signup = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,7 +19,7 @@ const Signup = () => {
     const confirmPassword = confirmPasswordRef.current!.value.trim();
 
     if (!validPasswordAndConfirmPassword(password, confirmPassword)) return;
-    dispatch(postSignup({email, password, confirmPassword}));
+    dispatch(putSignup({email, password, confirmPassword}));
     formRef.current?.reset();
   };
 

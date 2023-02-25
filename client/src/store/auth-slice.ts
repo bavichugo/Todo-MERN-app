@@ -1,49 +1,44 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { AUTH_ROUTES } from "../constants/routes";
+import METHODS from "../constants/api-methods";
 
 interface LoginPayload {
   email: string;
   password: string;
 }
 
-interface SignupPayload {
+interface IPutSignup {
   email: string;
   password: string;
   confirmPassword: string;
 }
 
-interface IPostSignup {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
-export const postSignup = createAsyncThunk(
-  "/auth/signup",
-  async (payload: IPostSignup) => {
+export const putSignup = createAsyncThunk(
+  AUTH_ROUTES.SIGNUP,
+  async (payload: IPutSignup) => {
     try {
       const { email, password, confirmPassword } = payload;
-      console.log(email, password, confirmPassword);
-      // const createUserResponse = await fetch("http://localhost:8000/auth/signup", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json"
-      //   },
-      //   body: JSON.stringify({
-      //     email,
-      //     password,
-      //     confirmPassword,
-      //   }),
-      // });
+      const createUserResponse = await fetch("http://localhost:8080/auth/signup", {
+        method: METHODS.PUT,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          confirmPassword,
+        }),
+      });
 
-      // if (createUserResponse.status === 422) {
-      //   throw new Error("Validation failed, make sure the email address isn't used yet");
-      // }
+      if (createUserResponse.status === 422) {
+        throw new Error("Validation failed, make sure the email address isn't used yet");
+      }
 
-      // if (createUserResponse.status !== 200 && createUserResponse.status !== 201) {
-      //   throw new Error("Creating a user failed!")
-      // }
+      if (createUserResponse.status !== 200 && createUserResponse.status !== 201) {
+        throw new Error("Creating a user failed!")
+      }
 
-      // console.log(createUserResponse);
+      console.log(createUserResponse);
       alert("Creating a user suceeded! Please, login now.");
     } catch (error) {
       console.log(error);
@@ -57,13 +52,13 @@ const authSlice = createSlice({
   initialState: authInitialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(postSignup.pending, (state) => {
+    builder.addCase(putSignup.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(postSignup.fulfilled, (state) => {
+    builder.addCase(putSignup.fulfilled, (state) => {
       state.loading = false;
     });
-    builder.addCase(postSignup.rejected, (state) => {
+    builder.addCase(putSignup.rejected, (state) => {
       state.loading = false;
     });
   },

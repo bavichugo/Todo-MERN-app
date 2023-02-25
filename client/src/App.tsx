@@ -2,9 +2,9 @@ import NavBar from "./components/UI/Navigation";
 import TodoMain from "./components/Todo/TodoMain";
 import { useSelector } from "react-redux";
 import { StoreState } from "./store";
-import Login from "./components/pages/Auth/Login";
-import Signup from "./components/pages/Auth/Signup";
-import Page404 from "./components/pages/Page404";
+import Login from "./pages/Auth/Login";
+import Signup from "./pages/Auth/Signup";
+import Page404 from "./pages/Page404";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
